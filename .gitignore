@@ -1,0 +1,10 @@
+# IDE's
+.idea
+
+# App
+agenda-petshop/node_modules
+agenda-petshop/package-lock.json
+
+# DB
+!db/mysql/.gitkeep
+db/mysql/*

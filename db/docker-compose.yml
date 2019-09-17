@@ -1,0 +1,24 @@
+version: '2'
+services:
+    petshop-mysql:
+        image: mysql:5.7.26
+        restart: always
+        container_name: petshop-mysql
+        environment:
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+        volumes:
+            - ./mysql:/var/lib/mysql
+        ports:
+            - 3306:3306
+    petshop-phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        container_name: petshop-phpmyadmin
+        ports:
+            - "8085:80"
+        environment:
+            - PMA_HOST=petshop-mysql
+        links:
+            - petshop-mysql
+        depends_on:
+          - petshop-mysql
