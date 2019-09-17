@@ -6,14 +6,14 @@ const app = customExpress();
 
 conexao.connect(erro => {
   if (erro) {
-    console.log(erro)
+    console.log(erro);
   }
 
   console.log('conectou no banco');
 
-  Tabelas.init(conexao)
+  Tabelas.init(conexao);
 });
 
 app.listen(4000, () => {
-  console.log('Servidor rodando na porta 4000')
+  console.log('Servidor rodando na porta 4000');
 });
