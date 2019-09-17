@@ -1,4 +1,4 @@
-const cruds = require('./crud/index')
+const cruds = require('./crud/index');
 
 class Operations {
   constructor(entidade) {
@@ -27,4 +27,4 @@ class Operations {
   }
 }
 
-module.exports = Operations
+module.exports = Operations;

@@ -1,35 +1,35 @@
-const Operations = require('../infraestrutura/operations')
+const Operations = require('../infraestrutura/operations');
 
-const Pets = new Operations('pet')
+const Pets = new Operations('pet');
 
 
 module.exports = app => {
   app.get('/pets', (req, res) => {
     Pets.lista(res)
-  })
+  });
 
   app.get('/pets/pet/:id', (req, res) => {
-    const { id } = req.params
+    const { id } = req.params;
 
-    Pets.buscaPorId(res, id)
-  })
+    Pets.buscaPorId(res, id);
+  });
 
   app.post('/pets/pet', (req, res) => {
-    const pet = req.body
+    const pet = req.body;
 
-    Pets.adiciona(res, pet)
-  })
+    Pets.adiciona(res, pet);
+  });
 
   app.put('/pets/pet/:id', (req, res) => {
-    const { id } = req.params
-    const pet = req.body
+    const { id } = req.params;
+    const pet = req.body;
 
-    Pets.atualiza(res, pet, id)
-  })
+    Pets.atualiza(res, pet, id);
+  });
 
   app.delete('/pets/pet/:id', (req, res) => {
-    const { id } = req.params
+    const { id } = req.params;
 
-    Pets.deleta(res, id)
-  })
-}
+    Pets.deleta(res, id);
+  });
+};

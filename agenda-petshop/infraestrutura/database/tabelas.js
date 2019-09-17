@@ -1,12 +1,12 @@
 class Tabelas {
   init(conexao) {
-    this.conexao = conexao
-    this.criaClientes()
-    this.criaPets()
-    this.criaServicos()
-    this.criaAtendimentos()
+    this.conexao = conexao;
+    this.criaClientes();
+    this.criaPets();
+    this.criaServicos();
+    this.criaAtendimentos();
 
-    console.log('tabelas criadas!')
+    console.log('tabelas criadas!');
   }
 
   criaClientes() {
@@ -44,4 +44,4 @@ class Tabelas {
 
 
 
-module.exports = new Tabelas
+module.exports = new Tabelas;

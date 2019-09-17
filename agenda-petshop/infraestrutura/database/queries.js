@@ -1,4 +1,4 @@
-const conexao = require('../conexao')
+const conexao = require('../conexao');
 
 const executaQuery = (res, query) => {
   conexao.query(query, (erro, resultados, campos) => {
@@ -10,6 +10,6 @@ const executaQuery = (res, query) => {
 
    console.log('executou a query!')
   })
-}
+};
 
-module.exports = executaQuery
+module.exports = executaQuery;
