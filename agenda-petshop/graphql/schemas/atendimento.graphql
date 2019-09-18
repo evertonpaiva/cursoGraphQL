@@ -8,6 +8,10 @@ type Atendimento {
   observacoes: String
 }
 
+type Query {
+  atendimentos: [Atendimento!]!
+}
+
 type Mutation {
   adicionarAtendimento(clienteId: Int!, petId: Int!, servicoId: Int!, status: String, observacoes: String): Atendimento!
 
