@@ -144,10 +144,10 @@ class Atendimento {
     });
   }
 
-  deleta(res, id) {
+  deleta(id) {
     const sql = `DELETE FROM Atendimentos WHERE id=${id}`;
 
-    executaQuery(res, sql);
+    return executaQuery(sql).then(() => id);
   }
 }
 
