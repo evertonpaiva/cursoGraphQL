@@ -1,10 +1,10 @@
 const executaQuery = require('../database/queries');
 
 class Servico {
-  lista(res) {
-    const sql = 'SELECT * FROM Servicos';
+  lista() {
+    const sql = `SELECT * FROM Servicos`;
 
-    executaQuery(res, sql);
+    return executaQuery(sql);
   }
 
   buscaPorId(res, id) {
