@@ -114,13 +114,34 @@ class Atendimento {
     );
   }
 
-  atualiza(res, novoItem, id) {
-    const { cliente, pet, servico, status, observacoes } = item;
-    const data = new Date.toLocaleDateString();
+  atualiza(novoItem) {
+    const { id, clienteId, petId, servicoId, status, observacoes } = novoItem;
+    const data = new Date().toLocaleDateString();
 
-    const sql = `UPDATE Atendimentos SET clienteId=${cliente}, petId=${pet}, servicoId=${servico}, data='${data}', status='${status}' observacoes='${observacoes}' WHERE id=${id}`;
+    const sql = `
+        UPDATE Atendimentos 
+        SET clienteId=${clienteId}, petId=${petId}, servicoId=${servicoId}, data='${data}', status='${status}', observacoes='${observacoes}' 
+        WHERE id=${id};
+        SELECT * FROM Clientes WHERE Clientes.id = ${clienteId};
+        SELECT * FROM Pets WHERE Pets.id = ${petId};
+        SELECT * FROM Servicos WHERE Servicos.id = ${servicoId};
+    `;
 
-    executaQuery(res, sql);
+    return executaQuery(sql).then(resposta => {
+      const cliente = resposta[1][0];
+      const pet = resposta[2][0];
+      const servico = resposta[3][0];
+
+      return ({
+        id,
+        data,
+        status,
+        observacoes,
+        cliente,
+        pet,
+        servico
+      });
+    });
   }
 
   deleta(res, id) {

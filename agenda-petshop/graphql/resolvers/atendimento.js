@@ -8,7 +8,8 @@ const resolvers = {
     atendimento: (root, { id }) => Atendimentos.buscaPorId(id)
   },
   Mutation: {
-    adicionarAtendimento: (root, params) => Atendimentos.adiciona(params)
+    adicionarAtendimento: (root, params) => Atendimentos.adiciona(params),
+    atualizarAtendimento: (root, params) => Atendimentos.atualiza(params)
   }
 };
 
