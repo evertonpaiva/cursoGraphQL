@@ -10,6 +10,7 @@ type Atendimento {
 
 type Query {
   atendimentos: [Atendimento!]!
+  atendimento(id: ID!): Atendimento!
 }
 
 type Mutation {

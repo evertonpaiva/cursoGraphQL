@@ -42,10 +42,45 @@ class Atendimento {
     });
   }
 
-  buscaPorId(res, id) {
-    const sql = `SELECT * FROM Atendimentos WHERE id=${parseInt(id)}`;
+  buscaPorId(id) {
+    const sql = `
+        SELECT
+            Atendimentos.id, Atendimentos.data, Atendimentos.status, Atendimentos.observacoes,
+            Pets.id as petId, Pets.nome as petNome, Pets.tipo as petTipo, Pets.observacoes as petObservacoes,
+            Clientes.id as clienteId, Clientes.nome as clienteNome, Clientes.Cpf as clienteCpf,
+            Servicos.id as servicoId, Servicos.nome as servicoNome, Servicos.preco as servicoPreco, Servicos.descricao as servicoDescricao
+        FROM
+            Atendimentos
+                INNER JOIN Pets ON Pets.id = Atendimentos.petId
+                INNER JOIN Clientes ON Clientes.id = Atendimentos.clienteId
+                INNER JOIN Servicos ON Servicos.id = Atendimentos.servicoId
+        WHERE
+            Atendimentos.id = ${id}
+    `;
 
-    executaQuery(res, sql);
+    return executaQuery(sql).then(atendimentos => ({
+      id: atendimentos[0].id,
+      data: atendimentos[0].data,
+      status: atendimentos[0].status,
+      observacoes: atendimentos[0].observacoes,
+      cliente: {
+        id: atendimentos[0].clienteId,
+        nome: atendimentos[0].clienteNome,
+        cpf: atendimentos[0].clienteCpf
+      },
+      pet: {
+        id: atendimentos[0].petId,
+        nome: atendimentos[0].petNome,
+        tipo: atendimentos[0].petTipo,
+        observacoes: atendimentos[0].petObservacoes
+      },
+      servico: {
+        id: atendimentos[0].servicoId,
+        nome: atendimentos[0].servicoNome,
+        preco: atendimentos[0].servicoPreco,
+        descricao: atendimentos[0].servicoDescricao
+      }
+    }));
   }
 
   adiciona(item) {
