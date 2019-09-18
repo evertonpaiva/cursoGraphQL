@@ -20,7 +20,8 @@ const resolvers = {
   Query: {
     status: () => "Servidor rodando!",
     clientes: () => Clientes.lista(),
-    cliente: (root, { id }) => Clientes.buscaPorId(id)
+    cliente: (root, { id }) => Clientes.buscaPorId(id),
+    pets: () => Pets.lista()
   },
   Mutation: {
     adicionarCliente: (root, params) => Clientes.adiciona(params),
